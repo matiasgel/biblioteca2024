@@ -1,29 +1,49 @@
 {% extends "base.html" %}
 {% block main %}
 <div class="container">
-    {% for libro in libros %}
-
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-            {{ libro.titulo }}
-        </div>
-
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-            {{ libro.autor }}
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-            <p class="text-truncate">
-                {{ libro.resumen }}
-            </p>
-        </div>
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-            {{ libro.isbn }}
-        </div>
-
-        <div class="col-sm-6 col-md-4 col-lg-3 mb-3">
-            {{ libro.genero }}
-        </div>
+    <h1 class="mb-4">Catálogo</h1>
+    <div class="mb-2">
+        <a href="{% url 'libro_form' %}" class="btn btn-primary">
+            <i class="bi bi-plus"></i>
+            Nuevo Libro
+        </a>
     </div>
-    {% endfor %}
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Resumen</th>
+                <th>ISBN</th>
+                <th>Género</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+
+            <tr>
+                <td>
+                    {{ libro.titulo }}
+                </td>
+
+                <td>
+                    {{ libro.autor }}
+                </td>
+                <td>
+                    <div class="text-truncate" style="max-width: 150px;">
+                        {{ libro.resumen }}
+                    </div>
+                </td>
+                <td>
+                    {{ libro.isbn }}
+                </td>
+
+                <td>
+                    {{ libro.genero }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </div>
 {% endblock %}
