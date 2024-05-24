@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="container">
+    <h1 class="mb-4">Catálogo</h1>
+    <div class="mb-2">
+        <a href="{% url 'libro_form' %}" class="btn btn-primary">
+            <i class="bi bi-plus"></i>
+            Nuevo Libro
+        </a>
+    </div>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Resumen</th>
+                <th>ISBN</th>
+                <th>Género</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for libro in libros %}
+
+            <tr>
+                <td>
+                    {{ libro.titulo }}
+                </td>
+
+                <td>
+                    {{ libro.autor }}
+                </td>
+                <td>
+                    <div class="text-truncate" style="max-width: 150px;">
+                        {{ libro.resumen }}
+                    </div>
+                </td>
+                <td>
+                    {{ libro.isbn }}
+                </td>
+
+                <td>
+                    {{ libro.genero }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

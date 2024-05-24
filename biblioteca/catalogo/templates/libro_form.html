@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block main %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h1>Nuevo Libro</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <form method="post" class="form-horizontal">
+                {% csrf_token %}
+                {% if errors %}
+                    <div class="alert alert-danger">
+                        <ul>
+                            {% for error in errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                {% endif %}
+                <div class="form-group">
+                    <label for="titulo" class="col-sm-2 control-label">Título</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="titulo" class="form-control" value="{{ titulo|default:'' }}" id="titulo">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="autor" class="col-sm-2 control-label">Autor</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="autor" class="form-control" value="{{ autor|default:'' }}" id="autor">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumen" class="col-sm-2 control-label">Resumen</label>
+                    <div class="col-sm-10">
+                        <textarea name="resumen" class="form-control" id="resumen">{{ resumen|default:'' }}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="isbn" class="col-sm-2 control-label">ISBN</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="isbn" class="form-control" value="{{ isbn|default:'' }}" id="isbn">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="genero" class="col-sm-2 control-label">Género</label>
+                    <div class="col-sm-10">
+                        <select name="genero" class="form-control" id="genero">
+                            {% for genero in generos %}
+                                <option value="{{ genero.id }}" {% if genero.id == genero_id %}selected{% endif %}>{{ genero.nombre }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

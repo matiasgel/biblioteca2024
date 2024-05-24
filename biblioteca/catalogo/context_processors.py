@@ -1,7 +1,7 @@
 from django.urls import reverse
 
 links = [
-    {"label": "Catálogo", "href": reverse("libro-list"), "icon": "bi bi-house-door"},
+    {"label": "Catálogo", "href": reverse("catalogo"), "icon": "bi bi-house-door"},
 ]
 
 
