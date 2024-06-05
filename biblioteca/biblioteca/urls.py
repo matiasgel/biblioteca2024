@@ -16,9 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from catalogo.views import CatalogoView, LibroFormView
+from login.views import LoginView, logout_view, RegistroView
 
 urlpatterns = [
-    path("catalogo/", CatalogoView.as_view(), name="catalogo"),
-    path("catalogo/agregar/", LibroFormView.as_view(), name="libro_form"),
+    path("", CatalogoView.as_view(), name="catalogo"),
+    path("agregar/", LibroFormView.as_view(), name="libro_form"),
+    path('login/', LoginView.as_view(), name='login'),
+    path('logout/', logout_view, name='logout'),
+    path('registro/', RegistroView.as_view(), name='registro'),
     path("admin/", admin.site.urls),
 ]
